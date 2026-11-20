@@ -19,7 +19,7 @@ import { ProfileProvider } from '../context/ProfileContext';
 import { useAppTheme } from '@/hooks/useAppTheme';
 
 export default function RootLayout() {
-  const { isDark, colors } = useAppTheme();
+  const { isDark, colors, ready } = useAppTheme();
 
   const navigationTheme = {
     ...(isDark ? DarkTheme : DefaultTheme),
@@ -33,6 +33,10 @@ export default function RootLayout() {
       notification: colors.statusDanger,
     },
   };
+
+  if (!ready) {
+    return null;
+  }
 
   return (
     <ThemeProvider value={navigationTheme}>

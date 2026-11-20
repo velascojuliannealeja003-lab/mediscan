@@ -91,8 +91,11 @@ function RemindersHeader() {
 }
 
 export default function TabsLayout() {
-  const { colors } = useAppTheme();
+  const { colors, ready } = useAppTheme();
 
+  if (!ready) {
+    return null;
+  }
   // Redirect to login if no active profile exists
   if (!MockAuth.getActiveProfile()) {
     return <Redirect href="/login" />;
